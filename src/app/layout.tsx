@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { SITE_URL, business } from "@/content/business";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -51,6 +52,7 @@ export default function RootLayout({
         <main id="inhalt">{children}</main>
         <SiteFooter />
         <StickyCallBar />
+        <Analytics />
       </body>
     </html>
   );

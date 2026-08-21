@@ -125,7 +125,7 @@ export function ServiceAreaMap() {
           })}
         </svg>
       </div>
-      <figcaption className="label figcell__cap">
+      <figcaption className="label figcell__cap map-cap">
         Schematische Darstellung — Lage relativ, nicht maßstabsgetreu. Das
         gefüllte Quadrat markiert Lahnstein.
       </figcaption>

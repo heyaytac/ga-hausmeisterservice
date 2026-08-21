@@ -263,12 +263,22 @@ h4 {
 }
 
 /* Asymmetric occupancy. Running text never spans more than 6 of 12 columns;
-   the occupied side alternates as the page descends. */
-.col-text {
+   the occupied side alternates as the page descends.
+
+   Every column helper MUST carry a mobile-first full-width base. A helper
+   defined only inside the 60rem query falls back to `grid-column: auto`,
+   which lands it in a single ~8px track and shreds the text into one word
+   per line. Add new helpers to this list, not just to the query below. */
+.col-text,
+.col-object,
+.col-lead,
+.col-wide,
+.col-half-a,
+.col-half-b,
+.col-text--narrow,
+.col-full {
   grid-column: 1 / -1;
-}
-.col-object {
-  grid-column: 1 / -1;
+  min-width: 0;
 }
 
 @media (min-width: 60rem) {
@@ -1496,9 +1506,19 @@ textarea.field__control {
   overflow: clip;
 }
 .crop .numeral {
-  position: absolute;
-  inset-inline-end: -0.08em;
-  bottom: -0.22em;
+  display: none;
+}
+
+/* The cropped numeral is a poster device that needs a wide cell to read as
+   one. In a narrow figure it just sits behind the last row of the table, so
+   it only appears once there is room for it. */
+@media (min-width: 60rem) {
+  .crop .numeral {
+    display: block;
+    position: absolute;
+    inset-inline-end: -0.08em;
+    bottom: -0.22em;
+  }
 }
 
 /* ==================================================== reduced motion       */
@@ -1519,12 +1539,17 @@ textarea.field__control {
   }
 }
 
-/* The diagram is hidden where its labels would render under 6px. */
-.map-wrap {
+/* The diagram is hidden where its labels would render under 6px — and the
+   caption goes with it, otherwise it describes a figure that isn't there. */
+.map-wrap,
+.map-cap {
   display: none;
 }
 @media (min-width: 48rem) {
   .map-wrap {
+    display: block;
+  }
+  .map-cap {
     display: block;
   }
 }

@@ -70,10 +70,21 @@ Erst `npm run build && npm start`, dann:
 
 ```bash
 npm run audit            # alle drei
-npm run audit:responsive # 320/375/414/768/1440 px: Überlauf, umbrechende Buttons
+npm run audit:responsive # 320/375/414/768/1440 px
 npm run audit:contrast   # WCAG AA über alle Seitentypen
 npm run audit:functional # Mega-Menü, Akkordeon, Formular, JSON-LD
 ```
+
+`audit:responsive` prüft vier Dinge: horizontalen Überlauf, zweizeilige
+Buttons, **gequetschte Spalten** und **überlagerten Text**. Die letzten
+beiden sind wichtig, weil eine Spaltenklasse, die nur in einer
+Desktop-Media-Query definiert ist, auf `grid-column: auto` zurückfällt, in
+einer ~8 px breiten Spur landet und den Text in ein Wort pro Zeile zerlegt —
+ohne dabei überzulaufen. Genau das ist hier einmal passiert.
+
+**Regel:** Jede neue `.col-*`-Klasse braucht eine Mobile-First-Basis in
+`globals.css` (`grid-column: 1 / -1`), nicht nur den Eintrag in der
+60rem-Query.
 
 Erwarteter Stand: `CLEAN`, `CONTRAST CLEAN`, 11×`PASS`.
 
