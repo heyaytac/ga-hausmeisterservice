@@ -1,0 +1,31 @@
+{
+  "name": "ga-hausmeisterservice",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "audit:responsive": "node scripts/audit-responsive.mjs",
+    "audit:contrast": "node scripts/audit-contrast.mjs",
+    "audit:functional": "node scripts/audit-functional.mjs",
+    "audit": "npm run audit:responsive && npm run audit:contrast && npm run audit:functional"
+  },
+  "dependencies": {
+    "next": "16.3.2",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.2",
+    "puppeteer-core": "^25.8.0",
+    "typescript": "^5"
+  },
+  "description": "Website f\u00fcr G.A Hausmeisterservice, Lahnstein"
+}
